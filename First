@@ -1,0 +1,8 @@
+#Johnathan Zhao
+#Dynamical Systems
+
+def StartItUp():
+    print("This program will TRY to solve dynamical systems. /n )
+    n=input(print("Input the number of equations you want to solve for:"))
+    coeff=[]
+    coeef.append(
