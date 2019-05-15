@@ -2,7 +2,18 @@
 #Dynamical Systems
 
 def StartItUp():
-    print("This program will TRY to solve dynamical systems. /n )
-    n=input(print("Input the number of equations you want to solve for:"))
+    print("This program will TRY to solve dynamical systems. /n ")
+    n=input(print("What n by n system do you want to work with?"))
     coeff=[]
-    coeef.append(
+    while(len(coeff)<n^2):
+        coeff.append(input(print("Input the coefficents for the"+ n +"by"+ n +"system."))) 
+    mat=[]
+    for(i in range n^2):
+        colList=[]
+        colList.append(coeff[i])
+        i+=2
+        for(j in range n):
+            colList.append(coeff[j]
+
+print(StartItUp())
+    
