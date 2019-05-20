@@ -1,19 +1,22 @@
 #Johnathan Zhao
 #Dynamical Systems
 
+
 def StartItUp():
-    print("This program will TRY to solve dynamical systems. /n ")
-    n=input(print("What n by n system do you want to work with?"))
+    print("This program will TRY to solve dynamical systems. \n ")
+    n=int(input("What n by n system do you want to work with? \n" ))
     coeff=[]
-    while(len(coeff)<n^2):
-        coeff.append(input(print("Input the coefficents for the"+ n +"by"+ n +"system."))) 
+    while(len(coeff)<n**2):
+        coeff.append(input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n")) 
     mat=[]
-    for(i in range n^2):
+    for i in range(n):
         colList=[]
-        colList.append(coeff[i])
-        i+=2
-        for(j in range n):
-            colList.append(coeff[j]
+        for j in range(n):
+            colList.append(coeff[n*i+j])
+        mat.append(colList)
+    return mat
+    
 
 print(StartItUp())
     
+#matrixlist = input("Please enter your coefficients").replace(" ","").split(',')
