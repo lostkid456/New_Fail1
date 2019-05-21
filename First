@@ -5,17 +5,13 @@
 def StartItUp():
     print("This program will TRY to solve dynamical systems. \n ")
     n=int(input("What n by n system do you want to work with? \n" ))
-    coeff=[]
-    while(len(coeff)<n**2):
-        coeff.append(input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n")) 
+    coeff=input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n").replace(" ","").split(',') 
     mat=[]
     for i in range(n):
         colList=[]
         for j in range(n):
             colList.append(coeff[n*i+j])
         mat.append(colList)
-    return mat
-    
 
 print(StartItUp())
     
