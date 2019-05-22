@@ -41,9 +41,8 @@ def FindSteadyState(initial,tolerance):
         current=initial
         current=Multiplication(current,mat)
         val=Subtraction(initial,current)
-        print(val)
-        if(val<tolerance):
-            print("There is a steady state.")
+        if(val<=tolerance):
+            print("There is a steady state after" + " "+ str(count) + " " + "iterations with a tolerance of"+ " " + str(tolerance) )
             counter+=1
             break
         else:
@@ -66,7 +65,7 @@ for i in range(n):
 
 initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',')
 time= int(input("How many interations do you want to do?"))
-tolerance=0.01
+tolerance=0.0000000001
 FindAtCertainTime(initial,time)
 FindSteadyState(initial,tolerance)
 
