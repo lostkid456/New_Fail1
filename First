@@ -1,7 +1,6 @@
 #Johnathan Zhao
 #Dynamical Systems
 
-
 def Multiplication(m1,m2):
     M=[]
     m_1=[]
@@ -13,7 +12,32 @@ def Multiplication(m1,m2):
             value+=((m_1[j])*m2[i][j])
         M.append(value)
     return M
-  
+
+def FindAtCertainTime(initial,time):
+    count=0
+    for i in range(100):
+        current = initial
+        current = Multiplication(current,mat)
+        count+=1
+        initial=current    
+        if(count==time):
+            print("The state after"+ " " + str(time) + "  "+ "iterations is" + " "+ str(initial))   
+
+def FindSteadyState(m1,m2,time):
+    M=[]
+    m_1=[]
+    m_2=[]
+    for item in m1:
+        m_1.append(float(item))
+    for item in m2:
+        m_2.append(float(item))
+    for i in range(len(m2[0])):
+        value=0;
+        for j in range(len(m1)):
+            value+=((m_1[j])*m2[i][j])
+        M.append(value)
+    for i in range(
+
 print("This program will TRY to solve dynamical systems. \n ")
 n=int(input("What n by n system do you want to work with? \n" ))
 coeff=input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n").replace(" ","").split(',') 
@@ -23,14 +47,12 @@ for i in range(n):
     for j in range(n):
         colList.append(float(coeff[n*i+j]))
     mat.append(colList)
-initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',')
-time= input("How many interations do you want to do?")
-for i in range(100):
-    current = initial
-    current = Multiplication(current,mat)
-    initial=current
-    if(i==time):
-        
 
-print(current)
+initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',')
+time= int(input("How many interations do you want to do?"))
+FindAtCertainTime(initial,time)
+
+    
+    
+    
 
