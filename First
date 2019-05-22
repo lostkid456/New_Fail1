@@ -1,6 +1,8 @@
 #Johnathan Zhao
 #Dynamical Systems
 
+import math 
+
 def Multiplication(m1,m2):
     M=[]
     m_1=[]
@@ -13,30 +15,44 @@ def Multiplication(m1,m2):
         M.append(value)
     return M
 
-def FindAtCertainTime(initial,time):
-    count=0
-    for i in range(100):
-        current = initial
-        current = Multiplication(current,mat)
-        count+=1
-        initial=current    
-        if(count==time):
-            print("The state after"+ " " + str(time) + "  "+ "iterations is" + " "+ str(initial))   
-
-def FindSteadyState(m1,m2,time):
-    M=[]
+def Subtraction(m1,m2):
     m_1=[]
     m_2=[]
     for item in m1:
         m_1.append(float(item))
     for item in m2:
         m_2.append(float(item))
-    for i in range(len(m2[0])):
-        value=0;
-        for j in range(len(m1)):
-            value+=((m_1[j])*m2[i][j])
-        M.append(value)
-    for i in range(
+    val=m_1[0]-m_2[0]
+    return math.fabs(val)
+
+def FindAtCertainTime(initial,time):
+    count=0
+    for i in range(time):
+        current = initial
+        current = Multiplication(current,mat)
+        count+=1
+        initial=current    
+        print("The state after"+ " " + str(count) + "  "+ "iterations is" + " "+ str(initial))
+
+def FindSteadyState(initial,tolerance):
+    count=0
+    counter=0
+    for i in range(100):
+        current=initial
+        current=Multiplication(current,mat)
+        val=Subtraction(initial,current)
+        print(val)
+        if(val<tolerance):
+            print("There is a steady state.")
+            counter+=1
+            break
+        else:
+            count+=1
+            initial=current    
+    if(counter==0):
+        print("There is no steady state.")
+        
+
 
 print("This program will TRY to solve dynamical systems. \n ")
 n=int(input("What n by n system do you want to work with? \n" ))
@@ -50,7 +66,9 @@ for i in range(n):
 
 initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',')
 time= int(input("How many interations do you want to do?"))
+tolerance=0.01
 FindAtCertainTime(initial,time)
+FindSteadyState(initial,tolerance)
 
     
     
