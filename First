@@ -3,6 +3,17 @@
 
 import math 
 
+#Method to find the ratio between initial/current
+def FindRatio(m1,m2):
+    m_1=[]
+    m_2=[]
+    for item in m1:
+        m_1.append(float(item))
+    for item in m2:
+        m_2.append(float(item))
+    val=m_1[0]/m_2[0]
+    return val
+
 #Method for matrix multiplication 
 def Multiplication(m1,m2):
     M=[]
@@ -45,16 +56,20 @@ def FindSteadyState(initial,tolerance):
         current=initial                     #temporary variable for new steady state
         current=Multiplication(current,mat)
         val=Subtraction(initial,current)    # finds the difference between the initial steady state and new steady state
-        
+        print("The ratio between initial and current at"+ " " + str(counter)+ " is " + str(FindRatio(current,initial)))
         if(val<=tolerance):             #Program stops and prints out where the steady state is at time if steady state is found 
             print("There is a steady state after" + " "+ str(count) + " " + "iterations with a tolerance of"+ " " + str(tolerance) )
+            print("The ratio between initial and current at"+ " " + str(counter)+ " is " + str(FindRatio(current,initial)))
             counter+=1
             break
         else:
             count+=1
+            FindRatio(initial,current)
             initial=current    
     if(counter==0):                       #Counter being zero means there is no steady state 
         print("There is no steady state.")
+        print("The ratio between initial and current at"+ " " + str(counter)+ " is " + str(FindRatio(current,initial)))
+        
         
 
 
