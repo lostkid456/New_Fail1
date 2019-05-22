@@ -3,6 +3,7 @@
 
 import math 
 
+#Method for matrix multiplication 
 def Multiplication(m1,m2):
     M=[]
     m_1=[]
@@ -15,6 +16,7 @@ def Multiplication(m1,m2):
         M.append(value)
     return M
 
+#Method for matrix subtraction
 def Subtraction(m1,m2):
     m_1=[]
     m_2=[]
@@ -25,6 +27,7 @@ def Subtraction(m1,m2):
     val=m_1[0]-m_2[0]
     return math.fabs(val)
 
+#Method for finding the state at a certain inputed time
 def FindAtCertainTime(initial,time):
     count=0
     for i in range(time):
@@ -33,43 +36,53 @@ def FindAtCertainTime(initial,time):
         count+=1
         initial=current    
         print("The state after"+ " " + str(count) + "  "+ "iterations is" + " "+ str(initial))
-
+        
+#Finds the steady state(if any)
 def FindSteadyState(initial,tolerance):
-    count=0
-    counter=0
+    count=0             #Used to keep track of what iteration will be steady state
+    counter=0            #Will be used for later purposes 
     for i in range(100):
-        current=initial
+        current=initial                     #temporary variable for new steady state
         current=Multiplication(current,mat)
-        val=Subtraction(initial,current)
-        if(val<=tolerance):
+        val=Subtraction(initial,current)    # finds the difference between the initial steady state and new steady state
+        
+        if(val<=tolerance):             #Program stops and prints out where the steady state is at time if steady state is found 
             print("There is a steady state after" + " "+ str(count) + " " + "iterations with a tolerance of"+ " " + str(tolerance) )
             counter+=1
             break
         else:
             count+=1
             initial=current    
-    if(counter==0):
+    if(counter==0):                       #Counter being zero means there is no steady state 
         print("There is no steady state.")
         
 
 
 print("This program will TRY to solve dynamical systems. \n ")
-n=int(input("What n by n system do you want to work with? \n" ))
-coeff=input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n").replace(" ","").split(',') 
-mat=[]
-for i in range(n):
+
+n=int(input("What n by n system do you want to work with? \n" )) #Input a single integer for n to represent 
+                                                                    #What n by n systemYou want to work with
+
+coeff=input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n").replace(" ","").split(',') #Input coefficents 
+
+mat=[] #Initialize new matrix 
+
+for i in range(n):                                 #Creates new matrix based on coefficents inputed 
     colList=[]
     for j in range(n):
         colList.append(float(coeff[n*i+j]))
     mat.append(colList)
 
-initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',')
-time= int(input("How many interations do you want to do?"))
-tolerance=0.0000000001
-FindAtCertainTime(initial,time)
-FindSteadyState(initial,tolerance)
+initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',') #Initial vector state
+
+time= int(input("How many interations do you want to do?"))  #Iterations of the system you want to find for 
+
+tolerance=0.0000000001 #Tolerance for the difference between the originial state and then next state
+
+FindAtCertainTime(initial,time)#Calls function to find the state at time 
+
+FindSteadyState(initial,tolerance) #Calls function to find the steady state 
 
     
     
     
-
