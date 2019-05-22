@@ -4,13 +4,13 @@
 
 def Multiplication(m1,m2):
     M=[]
-    
-    [float(i) for i in m1]
-    [float(i) for i in m2]
+    m_1=[]
+    for item in m1:
+        m_1.append(float(item))
     for i in range(len(m2[0])):
         value=0;
         for j in range(len(m1)):
-            value+=m1[j]*m2[i][j]
+            value+=((m_1[j])*m2[i][j])
         M.append(value)
     return M
   
@@ -21,14 +21,16 @@ mat=[]
 for i in range(n):
     colList=[]
     for j in range(n):
-        colList.append(coeff[n*i+j])
+        colList.append(float(coeff[n*i+j]))
     mat.append(colList)
 initial= input("Input values for the initial vector state for the system.").replace(" ", "").split(',')
 time= input("How many interations do you want to do?")
 for i in range(100):
     current = initial
     current = Multiplication(current,mat)
+    initial=current
+    if(i==time):
+        
 
 print(current)
-
 
