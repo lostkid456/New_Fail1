@@ -4,14 +4,11 @@
 import math 
 
 #Method to find the ratio between initial/current
-def FindRatio(m1,m2):
+def FindRatio(m1):
     m_1=[]
-    m_2=[]
     for item in m1:
         m_1.append(float(item))
-    for item in m2:
-        m_2.append(float(item))
-    val=m_1[0]/m_2[0]
+    val=m_1[0]/m_1[1]
     return val
 
 #Method for matrix multiplication 
@@ -42,10 +39,16 @@ def Subtraction(m1,m2):
 def FindAtCertainTime(initial,time):
     count=0
     for i in range(time):
-        current = initial
-        current = Multiplication(current,mat)
-        count+=1
-        initial=current    
+        current = initial                                  #A temporary variable for the current initial state
+        
+        current = Multiplication(current,mat)                     #Then set that temporary variable to the vector state after matrix multiplication
+        
+        print("The ratio between the current and inital steady state is,"+ str(FindRatio(initial)/FindRatio(current)))  #Prints the ratio between the temp vector state and initial state
+        
+        count+=1  #Adds one to the counter or iteration we are on 
+        
+        initial=current    #Then sets initial to the current for recursion
+        
         print("The state after"+ " " + str(count) + "  "+ "iterations is" + " "+ str(initial))
         
 #Finds the steady state(if any)
@@ -56,27 +59,23 @@ def FindSteadyState(initial,tolerance):
         current=initial                     #temporary variable for new steady state
         current=Multiplication(current,mat)
         val=Subtraction(initial,current)    # finds the difference between the initial steady state and new steady state
-        print("The ratio between initial and current at"+ " " + str(counter)+ " is " + str(FindRatio(current,initial)))
         if(val<=tolerance):             #Program stops and prints out where the steady state is at time if steady state is found 
             print("There is a steady state after" + " "+ str(count) + " " + "iterations with a tolerance of"+ " " + str(tolerance) )
-            print("The ratio between initial and current at"+ " " + str(counter)+ " is " + str(FindRatio(current,initial)))
             counter+=1
             break
         else:
             count+=1
-            FindRatio(initial,current)
             initial=current    
     if(counter==0):                       #Counter being zero means there is no steady state 
         print("There is no steady state.")
-        print("The ratio between initial and current at"+ " " + str(counter)+ " is " + str(FindRatio(current,initial)))
+        if(math.fabs(FindRatio(initial)-FindRatio(current))<tolerance):  #Finds if the ratio converges or not if there is no steady state 
+            print("Their ratios converge to," + " "+ FindRatio(current))   
         
-        
-
 
 print("This program will TRY to solve dynamical systems. \n ")
 
 n=int(input("What n by n system do you want to work with? \n" )) #Input a single integer for n to represent 
-                                                                    #What n by n systemYou want to work with
+                                                                                                       #What n by n system  you want to work with
 
 coeff=input("Input the coefficents for the"+ " " +str(n)+" "+"by"+ " "+ str(n)+ " " +"system. \n").replace(" ","").split(',') #Input coefficents 
 
