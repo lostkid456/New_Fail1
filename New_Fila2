@@ -1,0 +1,66 @@
+int circle_color=255;
+int radius=30;
+int center_x,center_y;
+
+void setup(){
+  //background(random(255),180,30);
+  size(1000,600);
+  frameRate(100);
+  center_x=width/2;
+  center_y=height/2;
+}
+
+void draw(){
+  noStroke();
+  background(30,180,random(255))  ;
+  fill(0,circle_color,45);
+  ellipse(mouseX,mouseY,50,50);
+  fill(0,random(255),130);
+  ellipse(center_x,center_y,radius,radius);
+  
+  if(mousePressed==true){
+    circle_color-=10;
+    if(circle_color<0){
+      circle_color=80;
+    }
+    rect(random(width),random(height),100,100);
+  if(keyPressed == true){
+     if(radius<0){
+       radius=0;
+     }
+     if(radius>200){
+       radius--;
+     }
+     if(key=='.'){
+       radius++;
+     }
+     if(key==','){
+       radius--;
+     }
+     if(key==CODED){
+       if(keyCode==UP){
+         center_y--;
+       }
+       if(keyCode==DOWN){
+         center_y++;
+       }
+       if(keyCode==RIGHT){
+         center_x++;
+       }
+       if(keyCode==LEFT){
+         center_x--;
+       }
+     }
+   }
+       
+}
+}
+
+void mouseMoved(){
+  circle_color-=100;
+  if(circle_color<0){
+    circle_color=255;
+  }
+  triangle(random(height),random(width),random(width),random(height),random(45),random(145));
+  curve(random(height),random(width),random(width),random(height),random(45),random(145),500,300);
+}
