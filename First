@@ -43,14 +43,12 @@ def FindAtCertainTime(initial,time):
         
         current = Multiplication(current,mat)                     #Then set that temporary variable to the vector state after matrix multiplication
         
-        print("The ratio between the current and inital steady state is,"+ str(FindRatio(initial)/FindRatio(current)))  #Prints the ratio between the temp vector state and initial state
-        
         count+=1  #Adds one to the counter or iteration we are on 
         
         initial=current    #Then sets initial to the current for recursion
         
         print("The state after"+ " " + str(count) + "  "+ "iterations is" + " "+ str(initial))
-        
+          
 #Finds the steady state(if any)
 def FindSteadyState(initial,tolerance):
     count=0             #Used to keep track of what iteration will be steady state
@@ -69,7 +67,9 @@ def FindSteadyState(initial,tolerance):
     if(counter==0):                       #Counter being zero means there is no steady state 
         print("There is no steady state.")
         if(math.fabs(FindRatio(initial)-FindRatio(current))<tolerance):  #Finds if the ratio converges or not if there is no steady state 
-            print("Their ratios converge to," + " "+ FindRatio(current))   
+            print("Their ratios converge to," + " "+str( FindRatio(current))  )
+        else:
+          print("Their ratios do no converge")
         
 
 print("This program will TRY to solve dynamical systems. \n ")
@@ -96,7 +96,5 @@ tolerance=0.0000000001 #Tolerance for the difference between the originial state
 FindAtCertainTime(initial,time)#Calls function to find the state at time 
 
 FindSteadyState(initial,tolerance) #Calls function to find the steady state 
-
     
-    
-    
+  
