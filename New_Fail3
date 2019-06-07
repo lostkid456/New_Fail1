@@ -1,6 +1,6 @@
- int x=300;
+int x=300;
 int y=300;
-int[] arr= new int[3];
+
 void setup(){
   size(600,600);
   background(0);
@@ -10,20 +10,20 @@ void draw(){
   line(0,y,600,y);
   line(x,0,x,600);
   if(mousePressed==true){
- 	background(0);
- 	x=mouseX;
- 	y=mouseY;
+   background(0);
+   x=mouseX;
+   y=mouseY;
   }
   if(keyPressed){
-	if(key==CODED){
-  	if(keyCode == UP){
-  	
-  	}
-  	if(keyCode== DOWN){
-    	
-  	}
-	} else{
-  	
-	}
+  if(key==CODED){
+    if(keyCode == UP){
+       
+    }
+    if(keyCode== DOWN){
+      
+    }
+  } else{
+    
+  }
   }
 }
