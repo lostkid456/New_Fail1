@@ -3,7 +3,59 @@ int y=300;
 
 void setup(){
   size(600,600);
-  background(0);             
+  background(0);             int x=300;
+int y=300;
+
+
+int func(int c){
+  return (c*c);
+}
+
+int pixeltox(int p){
+  int a = p%height-height/2;
+  return a;
+}
+
+int pixeltoy(int p){
+  int b = p%height-height/2;
+  return b;
+}
+
+void setup(){
+  size(600,600);
+  background(0);
+}
+void draw(){
+  stroke(255);
+  line(0,y,600,y);
+  line(x,0,x,600);
+  if(mousePressed==true){
+   background(0);
+   x=mouseX;
+   y=mouseY;
+  }
+  loadPixels();
+  for(int i=0;i<width*height;i++){
+    if(func(pixeltox(i))==pixeltoy(i)){
+        pixels[i]=color(255);
+      }
+    }
+  updatePixels();
+  if(keyPressed){
+  if(key==CODED){
+    if(keyCode == UP){
+       
+    }
+    if(keyCode== DOWN){
+      
+    }
+  } else{
+    
+  }
+  }
+}
+
+
 }
 void draw(){
   stroke(255);
