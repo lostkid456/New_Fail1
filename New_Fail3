@@ -3,7 +3,7 @@ int y=300;
 
 void setup(){
   size(600,600);
-  background(0);
+  background(0);             
 }
 void draw(){
   stroke(255);
@@ -13,6 +13,11 @@ void draw(){
    background(0);
    x=mouseX;
    y=mouseY;
+  }
+  for(int i=0;i<width*height;i++){
+    if(func(pixeltox(i))==pixeltoy(i)){
+      pixels[i]=color(255);
+    }
   }
   if(keyPressed){
   if(key==CODED){
@@ -27,3 +32,18 @@ void draw(){
   }
   }
 }
+
+int func(int x){
+  return (x*x);
+}
+
+int pixeltox(int p){
+  x=p%height-height/2;
+  return x;
+}
+
+int pixeltoy(int p){
+  y=p%width-width/2;
+  return y;
+}
+
