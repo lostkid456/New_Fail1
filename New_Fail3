@@ -7,7 +7,7 @@ void setup(){
 }
 
 float func(float c){
-  return (c*c);
+  return (c);
 }
 
 float pixeltox(int p){
