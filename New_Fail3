@@ -63,8 +63,13 @@ void draw(){
         line(0,y,600,y);
         line(x,0,x,600);
         background(0);
+        if(x_zoom>20 && y_zoom>20){
         x_zoom=x_zoom/1.05;
         y_zoom=x_zoom/1.05;
+        }else{
+          x_zoom=25;
+          y_zoom=25;
+        }
         loadPixels();
         for(int i=0;i<width*height;i+=1){
           if(abs(func(pixeltox(i))-pixeltoy(i))<0.00000001){
@@ -76,5 +81,4 @@ void draw(){
 }
   }
 }
-
 
