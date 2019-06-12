@@ -2,6 +2,7 @@ int x=300;
 int y=300;
 float x_zoom=200.0;
 float y_zoom=200.0;
+float tolerance=0.01;
 
 float func(float c){
   return (c*c);
@@ -36,10 +37,12 @@ void draw(){
   }
   loadPixels();
   for(int i=0;i<width*height;i+=1){
-    if(abs(func(pixeltox(i))-pixeltoy(i))<0.01){
+    if(abs(func(pixeltox(i))-pixeltoy(i))<tolerance){
         pixels[i]=color(255);
       }
   }
+  for(int i=0;i<width*height;i++){
+    if(
   updatePixels();
   if(keyPressed){
     if(key==CODED){
@@ -52,7 +55,7 @@ void draw(){
         y_zoom=x_zoom*1.05;
         loadPixels();
         for(int i=0;i<width*height;i+=1){
-          if(abs(func(pixeltox(i))-pixeltoy(i))<0.000001){
+          if(abs(func(pixeltox(i))-pixeltoy(i))<(tolerance)){
               pixels[i]=color(255);
       }
   }
@@ -72,13 +75,27 @@ void draw(){
         }
         loadPixels();
         for(int i=0;i<width*height;i+=1){
-          if(abs(func(pixeltox(i))-pixeltoy(i))<0.00000001){
+          if(abs(func(pixeltox(i))-pixeltoy(i))<tolerance/y_zoom){
               pixels[i]=color(255);
       }
     }
     updatePixels();
-  } 
+  }
+  if(keyCode==LEFT || keyCode==RIGHT){
+    stroke(255);
+    line(0,y,600,y);
+    line(x,0,x,600);
+    background(0);
+    x_zoom=200.0;
+    y_zoom=200.0;
+    loadPixels();
+    for(int i=0;i<width*height;i+=1){
+      if(abs(func(pixeltox(i))-pixeltoy(i))<0.000001){
+        pixels[i]=color(255);
+      }
+  }
+  updatePixels();
 }
+    }
   }
 }
-
