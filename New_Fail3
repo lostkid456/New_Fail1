@@ -1,26 +1,29 @@
 int x=300;
 int y=300;
-
-void setup(){
-  size(600,600);
-  background(0);             
-}
+float x_zoom=200.0;
+float y_zoom=200.0;
 
 float func(float c){
-  return (c);
+  return (c*c);
 }
 
 float pixeltox(int p){
   float a = p%height-x;
-  a = a /100.0;
+  a = a/x_zoom;
   return a;
 }
 
 float pixeltoy(int p){
   float b = y-p/width;
-  b = b/100.0;
+  b = b/y_zoom;
   return b;
 }
+
+void setup(){
+  size(600,600);
+  background(0);
+}
+
 
 void draw(){
   stroke(255);
@@ -36,19 +39,41 @@ void draw(){
     if(abs(func(pixeltox(i))-pixeltoy(i))<0.01){
         pixels[i]=color(255);
       }
-    }
+  }
   updatePixels();
   if(keyPressed){
-  if(key==CODED){
-    if(keyCode == UP){
-       
-    }
-    if(keyCode== DOWN){
-      
-    }
-  } else{
-    
+    if(key==CODED){
+      if(keyCode == UP){
+        stroke(255);
+        line(0,y,600,y);
+        line(x,0,x,600);
+        background(0);
+        x_zoom=x_zoom*1.05;
+        y_zoom=x_zoom*1.05;
+        loadPixels();
+        for(int i=0;i<width*height;i+=1){
+          if(abs(func(pixeltox(i))-pixeltoy(i))<0.000001){
+              pixels[i]=color(255);
+      }
   }
+  updatePixels();
+  }
+    if(keyCode== DOWN){
+      stroke(255);
+        line(0,y,600,y);
+        line(x,0,x,600);
+        background(0);
+        x_zoom=x_zoom/1.05;
+        y_zoom=x_zoom/1.05;
+        loadPixels();
+        for(int i=0;i<width*height;i+=1){
+          if(abs(func(pixeltox(i))-pixeltoy(i))<0.00000001){
+              pixels[i]=color(255);
+      }
+    }
+    updatePixels();
+  } 
+}
   }
 }
 
