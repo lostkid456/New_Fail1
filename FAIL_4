@@ -1,0 +1,76 @@
+int x = 300;
+int y = 300;
+int x_zoom = 100;
+float seed = 10;
+void setup(){
+  size(600,600);
+  background(255);
+  
+}
+
+float func(float x){
+  return tan(x);
+}
+
+float pixeltox(float p){
+  float a = p%width - x;
+  return x/x_zoom;
+}
+
+float pixeltoy(float p){
+  float b = y - p/width;
+  return y/x_zoom;
+}
+
+float drawline(float startx, float starty){ 
+    line(startx*x_zoom + x,  y - starty*x_zoom , startx*x_zoom + x, y - func(startx)*x_zoom);
+    return func(startx); 
+}
+
+void draw(){
+  stroke(0);
+  loadPixels();
+  for(int i=0;i<width*height;i+=1){
+    if(abs(func(pixeltox(i))-pixeltoy(i))<0.01){
+        pixels[i]=color(0);
+      }
+  }
+  for(int i=0;i<width*height;i++){
+    
+  }
+  updatePixels();
+  if(keyPressed){
+    if(key==CODED){
+      if(keyCode == UP){
+        x_zoom*=1.05;
+        
+      }
+      if(keyCode== DOWN){
+        if(x_zoom > 25){
+          x_zoom*=0.95;
+        }
+        
+      }
+    }
+    if(key == LEFT){
+        x_zoom = 100;
+        x = 300;
+        y = 300;
+      }
+    background(255);
+  }
+  
+  if(mousePressed){
+    x = mouseX;
+    y = mouseY;
+    background(255);
+  }
+  
+  line(x,0,x,height);
+  line(0,y,width,y);
+  
+  float s = drawline(seed, 0);
+  for(int i = 0; i < 10000; i++){
+    s = drawline(s,s);
+  }
+}
