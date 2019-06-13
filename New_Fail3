@@ -20,6 +20,7 @@ float pixeltoy(int p){
   return b;
 }
 
+
 void setup(){
   size(600,600);
   background(0);
@@ -27,22 +28,20 @@ void setup(){
 
 
 void draw(){
-  stroke(255);
+  stroke(y,x,0);
   line(0,y,600,y);
   line(x,0,x,600);
   if(mousePressed==true){
-   background(0);
+   background(0,0,y);
    x=mouseX;
    y=mouseY;
   }
   loadPixels();
   for(int i=0;i<width*height;i+=1){
     if(abs(func(pixeltox(i))-pixeltoy(i))<tolerance){
-        pixels[i]=color(255);
+        pixels[i]=color(x,y,random(255));
       }
   }
-  for(int i=0;i<width*height;i++){
-    if(
   updatePixels();
   if(keyPressed){
     if(key==CODED){
